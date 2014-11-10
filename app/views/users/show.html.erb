@@ -1,3 +1,12 @@
 <div class="pull-left" style="margin-right: 10px; margin-top: 10px;"><%= image_tag(@user.image, size: "100x100") %></div>
 <h3><%= @user.name if @user.name %></h3>
-<p>Email: <%= @user.email if @user.email %></p>
+<p><%= @user.email if @user.email %></p>
+<ul class="nav nav-tabs" role="tablist">
+  <% @exercises.each_index do |i| %>
+    <% if i == 0 %>
+      <li class="active"><a href="#"><%= @exercises[i].name %></a></li>
+    <% else %>
+      <li><a href="#"><%= @exercises[i].name %></a></li>
+    <% end %>
+  <% end %>
+</ul>
