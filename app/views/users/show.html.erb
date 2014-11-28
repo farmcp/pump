@@ -1,12 +1,23 @@
 <div class="pull-left" style="margin-right: 10px; margin-top: 10px;"><%= image_tag(@user.image, size: "100x100") %></div>
 <h3><%= @user.name if @user.name %></h3>
 <p><%= @user.email if @user.email %></p>
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs" role="tablist" id="tabs">
   <% @exercises.each_index do |i| %>
     <% if i == 0 %>
-      <li class="active"><a href="#"><%= @exercises[i].name %></a></li>
+      <li class="active"><a href="#<%= @exercises[i].name.downcase %>" data-toggle="tab" aria-controls="<%= @exercises[i].name.downcase %>"><%= @exercises[i].name %></a></li>
     <% else %>
-      <li><a href="#"><%= @exercises[i].name %></a></li>
+      <li><a href="#<%= @exercises[i].name.downcase %>" data-toggle="tab" aria-controls="<%= @exercises[i].name.downcase %>"><%= @exercises[i].name %></a></li>
     <% end %>
   <% end %>
 </ul>
+
+<div class="tab-content">
+  <% @exercises.each_index do |i| %>
+    <% if i == 0 %>
+      <div class="tab-pane active" id="<%= @exercises[i].name.downcase %>">something</div>
+    <% else %>
+      <div class="tab-pane" id="<%= @exercises[i].name.downcase %>">something else</div>
+    <% end %>
+  <% end %>
+</div>
+
